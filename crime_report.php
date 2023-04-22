@@ -1,6 +1,4 @@
 <?php
-
-// Get the form data
 $crime_type = $_POST['crime_type'];
 $crime_location = $_POST['crime_location'];
 $crime_date = $_POST['crime_date'];
@@ -18,7 +16,7 @@ if(isset($_FILES['crime_photo'])) {
   $target_file = $target_dir . basename($crime_photo["name"]);
   
   if (move_uploaded_file($crime_photo["tmp_name"], $target_file)) {
-    // Insert the data into the "crimes" table
+
     $sql = "INSERT INTO crimes (type, location, date, time, description, latitude, longitude, file)
             VALUES ('$crime_type', '$crime_location', '$crime_date', '$crime_time', '$crime_description', '$latitude', '$longitude', '$target_file')";
   
@@ -42,6 +40,5 @@ if(isset($_FILES['crime_photo'])) {
   }
 }
 
-// Close the database connection
 mysqli_close($conn);
 ?>
